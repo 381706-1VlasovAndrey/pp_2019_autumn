@@ -2,6 +2,7 @@
 #include <random>
 #include <ctime>
 #include <mpi.h>
+#include <vector>
 #include "../../../modules/task_1/vlasov_a_min_value_rows/min_value_rows.h"
 
 std::vector<int> getRandomMatrix(int m, int n) {
@@ -31,9 +32,9 @@ std::vector<int> MinValuesRowsParallel(const std::vector<int> &matrix,
   MPI_Scatter(&matrix[0], local_m * n, MPI_INT, &local_matrix[0], local_m * n, MPI_INT, 0, MPI_COMM_WORLD);
   for (i = 0; i < local_m; i++) {
     local_rez[i] = local_matrix[i*n];
-	for (j = 1; j < n; j++) {
-	  if (local_matrix[i*n + j] < local_rez[i]) {
-		local_rez[i] = local_matrix[i*n + j];
+    for (j = 1; j < n; j++) {
+      if (local_matrix[i*n + j] < local_rez[i]) {
+        local_rez[i] = local_matrix[i*n + j];
       }
     }
   }
