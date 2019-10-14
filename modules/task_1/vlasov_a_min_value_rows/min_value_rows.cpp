@@ -1,7 +1,7 @@
 // Copyright 2019 Vlasov Andrey
+#include <mpi.h>
 #include <random>
 #include <ctime>
-#include <mpi.h>
 #include <vector>
 #include "../../../modules/task_1/vlasov_a_min_value_rows/min_value_rows.h"
 

@@ -23,11 +23,11 @@ TEST(min_value_rows_MPI, test1_negative_size_columns_on_matrix) {
 TEST(min_value_rows_MPI, test3_positive_values) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  std::vector<int> M(25);
-  for (int i = 0; i < 25; i++)
+  std::vector<int> M(20);
+  for (int i = 0; i < 20; i++)
     M[i] = i;
-  std::vector<int> M_min = { 0, 5, 10, 15, 20 };
-  std::vector<int> rez = MinValuesRowsParallel(M, 5, 5);
+  std::vector<int> M_min = { 0, 5, 10, 15 };
+  std::vector<int> rez = MinValuesRowsParallel(M, 4, 5);
   if (rank == 0) {
     EXPECT_EQ(rez, M_min);
   }
