@@ -8,7 +8,7 @@ TEST(min_value_rows_MPI, test1_negative_size_rows_on_matrix) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   if (rank == 0) {
-	ASSERT_ANY_THROW(getRandomMatrix(-10, 10));
+    ASSERT_ANY_THROW(getRandomMatrix(-10, 10));
   }
 }
 
@@ -16,7 +16,7 @@ TEST(min_value_rows_MPI, test1_negative_size_columns_on_matrix) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   if (rank == 0) {
-	ASSERT_ANY_THROW(getRandomMatrix(10, -10));
+    ASSERT_ANY_THROW(getRandomMatrix(10, -10));
   }
 }
 
@@ -25,11 +25,11 @@ TEST(min_value_rows_MPI, test3_positive_values) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   std::vector<int> M(25);
   for (int i = 0; i < 25; i++)
-	M[i] = i;
+    M[i] = i;
   std::vector<int> M_min = { 0, 5, 10, 15, 20 };
   std::vector<int> rez = MinValuesRowsParallel(M, 5, 5);
   if (rank == 0) {
-	EXPECT_EQ(rez, M_min);
+    EXPECT_EQ(rez, M_min);
   }
 }
 
@@ -49,7 +49,7 @@ TEST(min_value_rows_MPI, test4_mixed_values) {
   std::vector<int> M_min = { -2, 1, -5 };
   std::vector<int> rez = MinValuesRowsParallel(M, 3, 3);
   if (rank == 0) {
-	EXPECT_EQ(rez, M_min);
+    EXPECT_EQ(rez, M_min);
   }
 }
 
@@ -69,7 +69,7 @@ TEST(min_value_rows_MPI, test5_negative_values) {
   std::vector<int> M_min = { -100, -90, -500 };
   std::vector<int> rez = MinValuesRowsParallel(M, 3, 3);
   if (rank == 0) {
-	EXPECT_EQ(rez, M_min);
+    EXPECT_EQ(rez, M_min);
   }
 }
 
@@ -80,7 +80,7 @@ TEST(min_value_rows_MPI, test6_one_size) {
   std::vector<int> M_min = { 7 };
   std::vector<int> rez = MinValuesRowsParallel(M, 1, 1);
   if (rank == 0) {
-	EXPECT_EQ(rez, M_min);
+    EXPECT_EQ(rez, M_min);
   }
 }
 
@@ -90,11 +90,11 @@ int main(int argc, char** argv) {
 
   ::testing::AddGlobalTestEnvironment(new GTestMPIListener::MPIEnvironment);
   ::testing::TestEventListeners& listeners =
-	::testing::UnitTest::GetInstance()->listeners();
+    ::testing::UnitTest::GetInstance()->listeners();
 
   listeners.Release(listeners.default_result_printer());
   listeners.Release(listeners.default_xml_generator());
 
   listeners.Append(new GTestMPIListener::MPIMinimalistPrinter);
   return RUN_ALL_TESTS();
-} 
+}
