@@ -36,18 +36,21 @@ TEST(min_value_rows_MPI, test3_positive_values) {
 TEST(min_value_rows_MPI, test4_mixed_values) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  std::vector<int> M(9);
+  std::vector<int> M(12);
   M[0] = -2;
   M[1] = -1;
   M[2] = 5;
   M[3] = 7;
   M[4] = 1;
   M[5] = 10;
-  M[6] = -3;
+  M[6] = 3;
   M[7] = -1;
   M[8] = -5;
-  std::vector<int> M_min = { -2, 1, -5 };
-  std::vector<int> rez = MinValuesRowsParallel(M, 3, 3);
+  M[9] = 3;
+  M[10] = 2;
+  M[11] = 7;
+  std::vector<int> M_min = { -2, 1, -5, 2 };
+  std::vector<int> rez = MinValuesRowsParallel(M, 4, 3);
   if (rank == 0) {
     EXPECT_EQ(rez, M_min);
   }
@@ -56,7 +59,7 @@ TEST(min_value_rows_MPI, test4_mixed_values) {
 TEST(min_value_rows_MPI, test5_negative_values) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  std::vector<int> M(9);
+  std::vector<int> M(12);
   M[0] = -5;
   M[1] = -100;
   M[2] = -30;
@@ -66,19 +69,11 @@ TEST(min_value_rows_MPI, test5_negative_values) {
   M[6] = -70;
   M[7] = -1;
   M[8] = -500;
-  std::vector<int> M_min = { -100, -90, -500 };
-  std::vector<int> rez = MinValuesRowsParallel(M, 3, 3);
-  if (rank == 0) {
-    EXPECT_EQ(rez, M_min);
-  }
-}
-
-TEST(min_value_rows_MPI, test6_one_size) {
-  int rank;
-  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  std::vector<int> M = { 7 };
-  std::vector<int> M_min = { 7 };
-  std::vector<int> rez = MinValuesRowsParallel(M, 1, 1);
+  M[9] = -3;
+  M[10] = -20;
+  M[11] = -7;
+  std::vector<int> M_min = { -100, -90, -500, -20 };
+  std::vector<int> rez = MinValuesRowsParallel(M, 4, 3);
   if (rank == 0) {
     EXPECT_EQ(rez, M_min);
   }
