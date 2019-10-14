@@ -1,6 +1,7 @@
 // Copyright 2019 Vlasov Andrey
 #include <gtest-mpi-listener.hpp>
 #include <gtest/gtest.h>
+#include <vector>
 #include "../../../modules/task_1/vlasov_a_min_value_rows/min_value_rows.h"
 
 TEST(min_value_rows_MPI, test1_negative_size_rows_on_matrix) {
