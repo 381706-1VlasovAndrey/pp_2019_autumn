@@ -60,3 +60,4 @@ script:
 
 notifications:
   email: false
+  
