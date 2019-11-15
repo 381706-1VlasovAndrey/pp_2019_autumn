@@ -47,13 +47,12 @@ bool testStarTopology(const MPI_Comm StarComm) {
     return false;
   int rank;
   MPI_Comm_rank(StarComm, &rank);
-  int a = 0;
+  int a = 1;
   int res = 0;
   if (rank == 0)
-    a = 1;
-  // MPI_Bcast(&a, 1, MPI_INT, 0, StarComm);
-  // MPI_Reduce(&a, &res, 1, MPI_INT, MPI_LAND, 0, StarComm);
+    a = 0;
+  MPI_Reduce(&a, &res, 1, MPI_INT, MPI_LAND, 0, StarComm);
   if ((rank == 0) && (res == 1))
     return true;
-  return true;
+  return false;
 }
