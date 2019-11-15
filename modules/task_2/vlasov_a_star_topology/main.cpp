@@ -16,7 +16,7 @@ TEST(star_topology_MPI, test2_check_StarComm_is_StarTopology) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm StarComm = createStarComm(MPI_COMM_WORLD);
   if (rank == 0) {
-    EXPECT_TRUE(isStarTopology(StarComm));
+    EXPECT_TRUE(testStarTopology(StarComm));
   }
 }
 
