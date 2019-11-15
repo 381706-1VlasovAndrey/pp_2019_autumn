@@ -47,7 +47,7 @@ bool testStarTopology(const MPI_Comm StarComm) {
     return false;
   int rank, size;
   MPI_Comm_rank(StarComm, &rank);
-  MPI_Comm_size(oldcomm, &size);
+  MPI_Comm_size(StarComm, &size);
   int a = 1;
   int res = 0;
   if (rank == 0)
