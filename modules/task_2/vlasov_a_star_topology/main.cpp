@@ -28,7 +28,7 @@ TEST(star_topology_MPI, test3_check_MPI_COMM_WORLD_is_StarTopology) {
   }
 }
 
-TEST(star_topology_MPI, test5_test_communications_MPI_COMM_WORLD) {
+TEST(star_topology_MPI, test4_test_communications_MPI_COMM_WORLD) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   if (rank == 0) {
@@ -36,12 +36,12 @@ TEST(star_topology_MPI, test5_test_communications_MPI_COMM_WORLD) {
   }
 }
 
-TEST(star_topology_MPI, test4_test_communications_StarTopology) {
+TEST(star_topology_MPI, test5_test_communications_StarTopology) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm StarComm = createStarComm(MPI_COMM_WORLD);
   if (rank == 0) {
-    EXPECT_TRUE(testStarTopology(StarComm));
+    ASSERT_TRUE(testStarTopology(StarComm));
   }
 }
 
