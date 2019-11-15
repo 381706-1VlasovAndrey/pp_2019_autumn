@@ -37,16 +37,10 @@ TEST(star_topology_MPI, test4_test_communications_MPI_COMM_WORLD) {
   }
 }
 
-TEST(star_topology_MPI, test5) {
-  ASSERT_TRUE(1);
-}
-
-TEST(star_topology_MPI, test6_can_create_StarTopology) {
+TEST(star_topology_MPI, test5_can_create_StarTopology) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  if (rank == 0) {
-    ASSERT_NO_THROW(createStarComm(MPI_COMM_WORLD));
-  }
+  ASSERT_NO_THROW(createStarComm(MPI_COMM_WORLD));
 }
 
 int main(int argc, char** argv) {
