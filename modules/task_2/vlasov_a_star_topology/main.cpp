@@ -3,36 +3,36 @@
 #include <gtest-mpi-listener.hpp>
 #include "./star_topology.h"
 
-TEST(star_topology_MPI, test1_check_StarComm_is_StarTopology) {
+TEST(star_topology_MPI, test1_can_create_StarTopology) {
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  ASSERT_NO_THROW(createStarComm(MPI_COMM_WORLD));
+}
+
+TEST(star_topology_MPI, test2_check_StarComm_is_StarTopology) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm StarComm = createStarComm(MPI_COMM_WORLD);
   EXPECT_TRUE(isStarTopology(StarComm));
 }
 
-TEST(star_topology_MPI, test2_test_communications_StarTopology) {
+TEST(star_topology_MPI, test3_test_communications_StarTopology) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm StarComm = createStarComm(MPI_COMM_WORLD);
   EXPECT_TRUE(testStarTopology(StarComm));
 }
 
-TEST(star_topology_MPI, test3_check_MPI_COMM_WORLD_is_StarTopology) {
+TEST(star_topology_MPI, test4_check_MPI_COMM_WORLD_is_StarTopology) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   EXPECT_FALSE(isStarTopology(MPI_COMM_WORLD));
 }
 
-TEST(star_topology_MPI, test4_test_communications_MPI_COMM_WORLD) {
+TEST(star_topology_MPI, test5_test_communications_MPI_COMM_WORLD) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   EXPECT_FALSE(testStarTopology(MPI_COMM_WORLD));
-}
-
-TEST(star_topology_MPI, test5_can_create_StarTopology) {
-  int rank;
-  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  ASSERT_NO_THROW(createStarComm(MPI_COMM_WORLD));
 }
 
 int main(int argc, char** argv) {
