@@ -39,7 +39,8 @@ TEST(star_topology_MPI, test4_test_communications_MPI_COMM_WORLD) {
 TEST(star_topology_MPI, test5_test_communications_StarTopology) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  bool res = testStarTopology(MPI_COMM_WORLD);
+  MPI_Comm StarComm = createStarComm(MPI_COMM_WORLD);
+  bool res = testStarTopology(StarComm);
   if (rank == 0) {
     EXPECT_TRUE(res);
   }
