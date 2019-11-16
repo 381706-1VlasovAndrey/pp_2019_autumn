@@ -3,7 +3,7 @@
 #include <gtest-mpi-listener.hpp>
 #include "./star_topology.h"
 
-TEST(star_topology_MPI, test1_can_create_Star_Topology) {
+TEST(star_topology_MPI, test1_can_create_StarTopology) {
   ASSERT_NO_THROW(createStarComm(MPI_COMM_WORLD));
 }
 
