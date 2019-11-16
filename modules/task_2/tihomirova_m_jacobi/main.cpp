@@ -1,4 +1,6 @@
 // Copyright 2019 Tihomirova Mariya
+#include <gtest/gtest.h>
+#include <gtest-mpi-listener.hpp>
 #include <mpi.h>
 #include <vector>
 #include <iostream>
@@ -24,7 +26,7 @@ TEST(jacobi_MPI, test1_A_Size_is_3) {
 TEST(jacobi_MPI, test2_A_Size_is_3) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  std::vector <double> matrix(9);
+  std::vector <double> A(9);
   std::vector <double> b(3);
   double eps = 0.0001;
   if (rank == 0) {
@@ -41,7 +43,7 @@ TEST(jacobi_MPI, test2_A_Size_is_3) {
 TEST(jacobi_MPI, test3_A_Size_is_3) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  std::vector <double> matrix(9);
+  std::vector <double> A(9);
   std::vector <double> b(3);
   double eps = 0.0001;
   if (rank == 0) {
@@ -58,7 +60,7 @@ TEST(jacobi_MPI, test3_A_Size_is_3) {
 TEST(jacobi_MPI, test4_A_Size_is_3) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  std::vector <double> matrix(9);
+  std::vector <double> A(9);
   std::vector <double> b(3);
   double eps = 0.00001;
   if (rank == 0) {
