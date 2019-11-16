@@ -2,6 +2,7 @@
 #include <mpi.h>
 #include <algorithm>
 #include <vector>
+#include <cmath>
 #include "../../../modules/task_2/tihomirova_m_jacobi/jacobi.h"
 
 double getNorm(const std::vector <double>& A, const std::vector<double> x, const std::vector <double>& b) {
