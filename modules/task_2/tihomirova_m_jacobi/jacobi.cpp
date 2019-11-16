@@ -17,7 +17,7 @@ double getNorm(const std::vector <double>& A, const std::vector<double> x, const
   return norm;
 }
 
-std::vector<double> Jacobi(const std::vector <double>& A, std::vector <double> x, 
+std::vector<double> Jacobi(const std::vector <double>& A, std::vector <double> x,
   double eps, int n, int rank, int size, int numprocs) {
   std::vector <double> x_old(n);
   std::vector <double> x_new(n);
