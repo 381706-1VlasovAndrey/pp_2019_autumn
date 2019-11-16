@@ -2,7 +2,7 @@
 #include <mpi.h>
 #include <vector>
 #include <iostream>
-#include "jacobi.h"
+#include "./jacobi.h"
 
 TEST(jacobi_MPI, test1_A_Size_is_3) {
   int rank;
