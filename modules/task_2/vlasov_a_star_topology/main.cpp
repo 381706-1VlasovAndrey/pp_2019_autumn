@@ -10,7 +10,6 @@ TEST(star_topology_MPI, test1_can_create_StarTopology) {
 TEST(star_topology_MPI, test2_check_StarComm_is_StarTopology) {
   MPI_Comm StarComm = createStarComm(MPI_COMM_WORLD);
   EXPECT_TRUE(isStarTopology(StarComm));
-
 }
 
 TEST(star_topology_MPI, test3_test_communications_StarTopology) {
