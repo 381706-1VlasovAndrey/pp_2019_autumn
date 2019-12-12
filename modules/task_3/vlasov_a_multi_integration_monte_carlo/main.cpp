@@ -28,8 +28,9 @@ TEST(multi_integration_monte_carlo, test1_n_is_negative) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   double a = 0.0, b = 3.0;
-  if (rank == 0)
+  if (rank == 0) {
     ASSERT_ANY_THROW(getIntegralMonteCarloSequential(f1, { a }, { b }, -1000));
+  }
 }
 
 TEST(multi_integration_monte_carlo, test2_multiplicity_is_1) {
