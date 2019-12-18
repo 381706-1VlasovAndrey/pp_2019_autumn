@@ -17,10 +17,10 @@ TEST(graham, test1_GenRand_n_is_negative) {
 TEST(graham, test2_self_in) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  std::vector<Point> Points{ {1,4},{0,0},{0,2},{1,2},{1,0.5},{1,3},{-2,1},{2,0},{2,2},{1,5} };
+  std::vector<Point> Points{ {1, 4}, {0, 0}, {0, 2}, {1, 2}, {1, 0.5}, {1, 3}, {-2, 1}, {2, 0}, {2, 2}, {1, 5} };
   std::vector<Point> P = Sort(Points);
   std::vector<Point> res = GrahamPar(P);
-  std::vector<Point> check{ {0,0},{2,0},{2,2},{1,5}, {-2,1} };
+  std::vector<Point> check{ {0, 0}, {2, 0}, {2, 2}, {1, 5}, {-2, 1} };
   bool a = 1;
   if (rank == 0) {
     for (int i = 0; i < res.size(); i++)

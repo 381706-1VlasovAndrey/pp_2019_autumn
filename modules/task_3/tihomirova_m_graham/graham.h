@@ -4,18 +4,13 @@
 #include <mpi.h>
 #include <vector>
 #include <iostream>
-using namespace std;
 
 class Point {
-public:
+  public:
   double x;
   double y;
-public:
   Point();
   Point(double _x, double _y);
-  friend ostream& operator << (ostream& os, const Point& d) {
-    return os << '(' << d.x << ',' << d.y << ')' << endl;
-  }
   Point& operator=(const Point& A) {
     if (this != &A) {
       x = A.x;
@@ -34,10 +29,9 @@ public:
 };
 
 class Vector {
-public:
+  public:
   double X;
   double Y;
-public:
   Vector();
   Vector(Point A, Point B);
   Vector(double X_, double Y_);
@@ -64,4 +58,4 @@ bool ravni(double x1, double y1, double x2, double y2);
 
 std::vector<Point> GenPoints(int n);
 
-#endif // MODULES_TASK_3_TIHOMIROVA_M_GRAHAM_GRAHAM_H_
+#endif  // MODULES_TASK_3_TIHOMIROVA_M_GRAHAM_GRAHAM_H_

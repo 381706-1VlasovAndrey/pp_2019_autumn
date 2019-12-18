@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <ctime>
+#include <random>
 #include "../../../modules/task_3/tihomirova_m_graham/graham.h"
 
 Point::Point() {
@@ -23,45 +24,37 @@ Point Point::Minimym(const Point& A, const Point& B) {
   return B;
 }
 
-Point::~Point()
-{
+Point::~Point() {
 }
 
-Vector::Vector()
-{
+Vector::Vector() {
   X = 0;
   Y = 0;
 }
 
-Vector::Vector(Point A, Point B)
-{
+Vector::Vector(Point A, Point B) {
   X = B.x - A.x;
   Y = B.y - A.y;
 }
 
-Vector::Vector(double X_, double Y_)
-{
+Vector::Vector(double X_, double Y_) {
   X = X_;
   Y = Y_;
 }
 
-double Modul(const Vector& Vec)
-{
+double Modul(const Vector& Vec) {
   return (sqrt(Vec.X * Vec.X + Vec.Y * Vec.Y));
 }
 
-double Scalar(const Vector& Vec1, const Vector& Vec2)
-{
+double Scalar(const Vector& Vec1, const Vector& Vec2) {
   return (Vec1.X * Vec2.X + Vec1.Y * Vec2.Y);
 }
 
-Vector::~Vector()
-{
+Vector::~Vector() {
 }
 
 
-double Cosin(const Vector& A, const Vector& B)
-{
+double Cosin(const Vector& A, const Vector& B) {
   return (Scalar(A, B) / (Modul(A) * Modul(B)));
 }
 
@@ -77,9 +70,10 @@ std::vector<Point> GenPoints(int n) {
   if (n < 1)
     throw "few points";
   std::vector<Point> P(n);
+  std::mt19937 gen;
   for (int i = 0; i < n; i++) {
-    P[i].x = rand();
-    P[i].y = rand();
+    P[i].x = gen();
+    P[i].y = gen();
   }
   return P;
 }
@@ -143,7 +137,8 @@ std::vector<Point> GrahamSeq(const std::vector<Point>& P) {
   Res.push_back(Points[1].y);
   if (Points.size() > 2) {
     for (int i = 2; i < Points.size(); i++) {
-      while (cw(Res[Res.size() - 4], Res[Res.size() - 3], Res[Res.size() - 2], Res[Res.size() - 1], Points[i].x, Points[i].y)) {
+      while (cw(Res[Res.size() - 4], Res[Res.size() - 3], Res[Res.size() - 2], 
+        Res[Res.size() - 1], Points[i].x, Points[i].y)) {
         Res.pop_back();
         Res.pop_back();
       }
