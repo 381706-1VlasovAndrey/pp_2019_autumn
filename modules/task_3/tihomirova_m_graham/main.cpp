@@ -10,8 +10,9 @@
 TEST(graham, test1_GenRand_n_is_negative) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  if (rank == 0)
+  if (rank == 0) {
     ASSERT_ANY_THROW(GenPoints(-100));
+  }
 }
 
 TEST(graham, test2_self_in) {
