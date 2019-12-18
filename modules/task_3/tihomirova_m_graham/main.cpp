@@ -23,7 +23,7 @@ TEST(graham, test2_self_in) {
   std::vector<Point> check{ {0, 0}, {2, 0}, {2, 2}, {1, 5}, {-2, 1} };
   bool a = 1;
   if (rank == 0) {
-    for (int i = 0; i < res.size(); i++)
+    for (size_t i = 0; i < res.size(); i++)
       if (res[i] != check[i])
         a = 0;
     EXPECT_EQ(a, 1);
@@ -38,7 +38,7 @@ TEST(graham, test3_n_is_100) {
   std::vector<Point> check = GrahamSeq(P);
   bool a = 1;
   if (rank == 0) {
-    for (int i = 0; i < res.size(); i++)
+    for (size_t i = 0; i < res.size(); i++)
       if (res[i] != check[i])
         a = 0;
     EXPECT_EQ(a, 1);
@@ -53,7 +53,7 @@ TEST(graham, test4_n_is_200) {
   std::vector<Point> check = GrahamSeq(P);
   bool a = 1;
   if (rank == 0) {
-    for (int i = 0; i < res.size(); i++)
+    for (size_t i = 0; i < res.size(); i++)
       if (res[i] != check[i])
         a = 0;
     EXPECT_EQ(a, 1);
@@ -68,7 +68,7 @@ TEST(graham, test5_n_is_300) {
   std::vector<Point> check = GrahamSeq(P);
   bool a = 1;
   if (rank == 0) {
-    for (int i = 0; i < res.size(); i++)
+    for (size_t i = 0; i < res.size(); i++)
       if (res[i] != check[i])
         a = 0;
     EXPECT_EQ(a, 1);
