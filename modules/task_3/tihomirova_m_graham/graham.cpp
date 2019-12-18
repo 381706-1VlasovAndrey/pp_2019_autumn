@@ -60,7 +60,7 @@ double Cosin(const Vector& A, const Vector& B) {
 
 Point SearchMinPoint(const std::vector<Point>& Points) {
   Point Min = Points[0];
-  for (int i = 1; i < Points.size(); i++) {
+  for (size_t i = 1; i < Points.size(); i++) {
     Min = Min.Minimym(Min, Points[i]);
   }
   return Min;
@@ -83,7 +83,7 @@ std::vector<Point> Sort(const std::vector<Point>& Points) {
   Point Min = SearchMinPoint(P);
   std::vector<double> Cos(P.size());
   Vector VecA(1, 0);
-  for (int i = 0; i < P.size(); i++) {
+  for (size_t i = 0; i < P.size(); i++) {
     Vector VecB(Min, Points[i]);
     if (Min == Points[i]) {
       Cos[i] = 2;
@@ -91,8 +91,8 @@ std::vector<Point> Sort(const std::vector<Point>& Points) {
       Cos[i] = Cosin(VecA, VecB);
     }
   }
-  for (int i = 0; i < P.size() - 1; i++) {
-    for (int j = 0; j < P.size() - i - 1; j++) {
+  for (size_t i = 0; i < P.size() - 1; i++) {
+    for (size_t j = 0; j < P.size() - i - 1; j++) {
       if (Cos[j + 1] > Cos[j]) {
         Point temp = P[j + 1];
         P[j + 1] = P[j];
@@ -103,7 +103,7 @@ std::vector<Point> Sort(const std::vector<Point>& Points) {
       }
     }
   }
-  for (int i = 0; i < P.size() - 1; i++) {
+  for (size_t i = 0; i < P.size() - 1; i++) {
     if (fabs(Cos[i + 1] - Cos[i]) < 0.000001) {
       Vector Vec1(Min, P[i]);
       Vector Vec2(Min, P[i + 1]);
@@ -136,7 +136,7 @@ std::vector<Point> GrahamSeq(const std::vector<Point>& P) {
   Res.push_back(Points[1].x);
   Res.push_back(Points[1].y);
   if (Points.size() > 2) {
-    for (int i = 2; i < Points.size(); i++) {
+    for (size_t i = 2; i < Points.size(); i++) {
       while (cw(Res[Res.size() - 4], Res[Res.size() - 3], Res[Res.size() - 2],
         Res[Res.size() - 1], Points[i].x, Points[i].y)) {
         Res.pop_back();
@@ -147,7 +147,7 @@ std::vector<Point> GrahamSeq(const std::vector<Point>& P) {
     }
   }
   std::vector<Point> resPoint(Res.size() / 2);
-  for (int i = 0; i < Res.size(); i += 2) {
+  for (size_t i = 0; i < Res.size(); i += 2) {
     resPoint[i / 2].x = Res[i];
     resPoint[i / 2].y = Res[i + 1];
   }
@@ -165,26 +165,26 @@ std::vector<Point> GrahamPar(const std::vector<Point>& Points) {
   int l_n = n / size;
   if (n >= size) {
     std::vector<double> Vec;
-    for (int i = 0; i < P.size(); i++) {
+    for (size_t i = 0; i < P.size(); i++) {
       Vec.push_back(P[i].x);
       Vec.push_back(P[i].y);
     }
     std::vector<double> l_Vec(2 * l_n);
     MPI_Scatter(&Vec[0], 2 * l_n, MPI_DOUBLE, &l_Vec[0], 2 * l_n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
     if (rank == (size - 1)) {
-      for (int i = size * l_n; i < P.size(); i++) {
+      for (size_t i = size * l_n; i < P.size(); i++) {
         l_Vec.push_back(P[i].x);
         l_Vec.push_back(P[i].y);
       }
     }
     std::vector<Point> l_P(l_Vec.size() / 2);
-    for (int i = 0; i < l_Vec.size(); i += 2) {
+    for (size_t i = 0; i < l_Vec.size(); i += 2) {
       l_P[i / 2].x = l_Vec[i];
       l_P[i / 2].y = l_Vec[i + 1];
     }
     std::vector<Point> l_resPoint = GrahamSeq(l_P);
     l_Vec.clear();
-    for (int i = 0; i < l_resPoint.size(); i++) {
+    for (size_t i = 0; i < l_resPoint.size(); i++) {
       l_Vec.push_back(l_resPoint[i].x);
       l_Vec.push_back(l_resPoint[i].y);
     }
@@ -214,7 +214,7 @@ std::vector<Point> GrahamPar(const std::vector<Point>& Points) {
     }
     if (rank == 0) {
       std::vector<Point> GlobalResPoint(Global_vec.size() / 2);
-      for (int i = 0; i < Global_vec.size(); i += 2) {
+      for (size_t i = 0; i < Global_vec.size(); i += 2) {
         GlobalResPoint[i / 2].x = Global_vec[i];
         GlobalResPoint[i / 2].y = Global_vec[i + 1];
       }
