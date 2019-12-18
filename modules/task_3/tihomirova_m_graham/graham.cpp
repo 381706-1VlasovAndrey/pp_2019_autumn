@@ -11,7 +11,7 @@ Point::Point() {
   y = 0;
 }
 
-Point::Point(double _x, double _y) : x{ _x }, y{ _y } { 
+Point::Point(double _x, double _y) : x{ _x }, y{ _y } {
 }
 
 Point Point::Minimym(const Point& A, const Point& B) {
@@ -137,7 +137,7 @@ std::vector<Point> GrahamSeq(const std::vector<Point>& P) {
   Res.push_back(Points[1].y);
   if (Points.size() > 2) {
     for (int i = 2; i < Points.size(); i++) {
-      while (cw(Res[Res.size() - 4], Res[Res.size() - 3], Res[Res.size() - 2], 
+      while (cw(Res[Res.size() - 4], Res[Res.size() - 3], Res[Res.size() - 2],
         Res[Res.size() - 1], Points[i].x, Points[i].y)) {
         Res.pop_back();
         Res.pop_back();

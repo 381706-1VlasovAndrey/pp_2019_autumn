@@ -6,7 +6,7 @@
 #include <iostream>
 
 class Point {
-  public:
+ public:
   double x;
   double y;
   Point();
@@ -29,7 +29,7 @@ class Point {
 };
 
 class Vector {
-  public:
+ public:
   double X;
   double Y;
   Vector();
